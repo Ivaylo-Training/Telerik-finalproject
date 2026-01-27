@@ -40,11 +40,11 @@ jobs:
 
       - name: Lint Python code
         run: |
-          flake8 app/ --count --max-line-length=120 --statistics || true
+          flake8 app/ --count --max-line-length=120 --statistics
 
       - name: Run Tests
         run: |
-          pytest app/ || true
+          pytest app/
 
       - name: SonarCloud Scan
         if: ${{ env.SONAR_TOKEN != '' }}
@@ -97,7 +97,7 @@ jobs:
             $IMAGE_REGISTRY/$IMAGE_NAME=$IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_TAG
 
           cd ../../
-          sed -i "s/value: \"dev\"/value: \"${IMAGE_TAG}\"/g" ops/k8s/deployment.yaml || true
+          sed -i "s/value: \"dev\"/value: \"${IMAGE_TAG}\"/g" ops/k8s/deployment.yaml
 
       - name: Commit and push GitOps change
         run: |
@@ -105,5 +105,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add ops/k8s/kustomization.yaml ops/k8s/deployment.yaml
-          git commit -m "gitops: deploy image $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_TAG" || echo "No changes to commit"
+          git commit -m "gitops: deploy image $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_TAG"
           git push
