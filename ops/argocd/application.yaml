@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jira-dashboard
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Ivaylo-Training/Telerik-finalproject.git
+    targetRevision: main
+    path: ops/k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jira-auto
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
