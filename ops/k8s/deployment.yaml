@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jira-dashboard
+  namespace: jira-auto
+  labels:
+    app: jira-dashboard
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jira-dashboard
+  template:
+    metadata:
+      labels:
+        app: jira-dashboard
+    spec:
+      containers:
+        - name: app
+          image: inikolov98/my-jira-automation:dev
+          ports:
+            - containerPort: 8000
+          env:
+            - name: APP_NAME
+              value: "jira-automation-dashboard"
+            - name: ENVIRONMENT
+              value: "dev"
+            - name: APP_VERSION
+              value: "dev"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20
