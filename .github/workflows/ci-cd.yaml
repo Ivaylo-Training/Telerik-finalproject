@@ -46,7 +46,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          pytest app/
+          pytest -q
 
       - name: SonarCloud Scan
         if: ${{ env.SONAR_TOKEN != '' }}
