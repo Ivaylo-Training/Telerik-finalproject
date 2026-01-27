@@ -4,12 +4,13 @@ kind: Kustomization
 namespace: jira-auto
 
 resources:
-  - namespace.yaml
-  - deployment.yaml
-  - service.yaml
-  - ingress.yaml
-  - servicemonitor.yaml
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+- servicemonitor.yaml
 
 images:
-  - name: inikolov98/my-jira-automation
-    newTag: dev
+- name: inikolov98/my-jira-automation
+  newName: inikolov98/my-jira-automation
+  newTag: dca147cf6a5ac939607f1824f7a4765228353a12

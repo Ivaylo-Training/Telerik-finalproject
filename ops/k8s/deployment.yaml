@@ -24,9 +24,9 @@ spec:
             - name: APP_NAME
               value: "jira-automation-dashboard"
             - name: ENVIRONMENT
-              value: "dev"
+              value: "dca147cf6a5ac939607f1824f7a4765228353a12"
             - name: APP_VERSION
-              value: "dev"
+              value: "dca147cf6a5ac939607f1824f7a4765228353a12"
           readinessProbe:
             httpGet:
               path: /health
