@@ -130,3 +130,7 @@ def index(request: Request):
 @app.get("/metrics")
 def metrics():
     return HTMLResponse(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
+
+@app.get("/ready")
+def ready():
+    return {"ready": True}
