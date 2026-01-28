@@ -13,4 +13,4 @@ resources:
 images:
 - name: inikolov98/my-jira-automation
   newName: inikolov98/my-jira-automation
-  newTag: 353fea51d2853f0154f6664deb7492bf34d35b06
+  newTag: 0c707e960025fee69218a301da304720c918c415
