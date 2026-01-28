@@ -20,8 +20,10 @@ JIRA_MAX_RESULTS = int(os.getenv("JIRA_MAX_RESULTS", "8"))
 app = FastAPI(title="Jira Automation Dashboard", version="1.0.0")
 templates = Jinja2Templates(directory="app/templates")
 
+
 # Expose version/env via a gauge (Prometheus-friendly)
 APP_INFO.labels(app=APP_NAME, version=APP_VERSION, environment=ENVIRONMENT).set(1)
+
 
 
 @app.middleware("http")
@@ -35,6 +37,7 @@ async def metrics_middleware(request: Request, call_next):
         duration_seconds=time.time() - start,
     )
     return response
+
 
 def jira_search_issues(max_results: int = 8) -> tuple[list[dict[str, Any]], str]:
     """
@@ -73,9 +76,11 @@ def jira_search_issues(max_results: int = 8) -> tuple[list[dict[str, Any]], str]
 
     return issues, JIRA_PROJECT_KEY
 
+
 @app.get("/health", response_class=JSONResponse)
 def health():
     return {"status": "ok", "app": APP_NAME, "version": APP_VERSION, "environment": ENVIRONMENT}
+
 
 @app.get("/jira/issues", response_class=JSONResponse)
 def jira_issues():
@@ -93,6 +98,8 @@ def jira_issues():
             status_code=500,
             content={"error": "Unexpected error", "details": str(e)},
         )
+
+
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
@@ -120,6 +127,7 @@ def index(request: Request):
             "jira_project": jira_project,
         },
     )
+
 
 
 @app.get("/metrics")
