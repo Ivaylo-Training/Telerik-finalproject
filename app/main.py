@@ -50,7 +50,7 @@ def jira_search_issues(max_results: int = 8) -> tuple[list[dict[str, Any]], str]
     params = {
         "jql": f"project = {JIRA_PROJECT_KEY} ORDER BY created DESC",
         "maxResults": max_results,
-        "fields": ["summary", "status", "assignee"],
+        "fields": ["summary", "status", "assignee", "issuetype"],
     }
 
     r = requests.get(url, auth=auth, params=params, timeout=10)
@@ -61,6 +61,7 @@ def jira_search_issues(max_results: int = 8) -> tuple[list[dict[str, Any]], str]
         key = i.get("key", "N/A")
         fields = i.get("fields") or {}
         status = (fields.get("status") or {}).get("name", "Unknown")
+        issuetype = (fields.get("issuetype") or {}).get("name", "Unknown")
         assignee = (fields.get("assignee") or {}).get("displayName") or "Unassigned"
 
         issues.append(
@@ -69,6 +70,7 @@ def jira_search_issues(max_results: int = 8) -> tuple[list[dict[str, Any]], str]
                 "summary": fields.get("summary", ""),
                 "status": status,
                 "assignee": assignee,
+                "work_type": issuetype,
                 "url": f"{JIRA_BASE_URL}/browse/{key}" if JIRA_BASE_URL else None,
             }
         )
