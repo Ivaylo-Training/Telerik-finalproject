@@ -45,12 +45,12 @@ def jira_search_issues(max_results: int = 8) -> tuple[list[dict[str, Any]], str]
     if not (JIRA_BASE_URL and JIRA_EMAIL and JIRA_API_TOKEN and JIRA_PROJECT_KEY):
         return [], JIRA_PROJECT_KEY
 
-    url = f"{JIRA_BASE_URL}/rest/api/3/search"
+    url = f"{JIRA_BASE_URL}/rest/api/3/search/jql"
     auth = (JIRA_EMAIL, JIRA_API_TOKEN)
     params = {
         "jql": f"project = {JIRA_PROJECT_KEY} ORDER BY created DESC",
         "maxResults": max_results,
-        "fields": "summary,status,assignee",
+        "fields": ["summary", "status", "assignee"],
     }
 
     r = requests.get(url, auth=auth, params=params, timeout=10)
