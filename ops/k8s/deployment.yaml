@@ -7,6 +7,8 @@ metadata:
     app: jira-dashboard
 spec:
   replicas: 2
+  revisionHistoryLimit: 2
+  progressDeadlineSeconds: 300
   selector:
     matchLabels:
       app: jira-dashboard
