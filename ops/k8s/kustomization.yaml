@@ -3,14 +3,14 @@ kind: Kustomization
 
 namespace: jira-auto
 
+# - ingress.yaml # temp removed
 resources:
 - namespace.yaml
 - deployment.yaml
 - service.yaml
-# - ingress.yaml # temp removed
 - servicemonitor.yaml
 
 images:
 - name: inikolov98/my-jira-automation
   newName: inikolov98/my-jira-automation
-  newTag: e7fb2f630de5f04d3d9b65c30db7cf7bc077a515
+  newTag: 26e691ad9cb1124a5631ee5913608385dc4c35dc
