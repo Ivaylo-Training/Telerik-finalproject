@@ -133,7 +133,6 @@ Collected metrics include:
 * Request latency histograms
 * Application version and environment metadata
 
-Metrics are scraped using a ServiceMonitor and visualized in Grafana.
 
 ---
 
@@ -141,12 +140,11 @@ Metrics are scraped using a ServiceMonitor and visualized in Grafana.
 
 To keep the project focused and easy to demonstrate, the following were intentionally left out:
 
-* Multiple environments (dev/staging/prod)
-* Progressive delivery strategies (canary or blue-green)
-* Alerting and SLO definitions
+* Multiple environments - dev, staging, production
+* ChatOps for nottifications
+* Alerting based on monitoring tools (Grafana)
 * Advanced secret management solutions
 
-These are considered natural next steps.
 
 ---
 
@@ -160,4 +158,4 @@ This project demonstrates:
 * Kubernetes-based application runtime
 * basic but effective observability
 
-The result is a **clean, reproducible, and fully automated delivery workflow** suitable for demonstration and evaluation.
+The result is a **clean, reproducible, and fully automated delivery workflow** 
