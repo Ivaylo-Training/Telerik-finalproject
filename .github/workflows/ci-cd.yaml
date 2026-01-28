@@ -28,6 +28,7 @@ jobs:
         uses: gitleaks/gitleaks-action@v2.3.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_NO_UPDATE: "true"
 
       - name: Setup Python
         uses: actions/setup-python@v5
