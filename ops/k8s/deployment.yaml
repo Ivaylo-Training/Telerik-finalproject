@@ -27,6 +27,10 @@ spec:
               value: "dca147cf6a5ac939607f1824f7a4765228353a12"
             - name: APP_VERSION
               value: "dca147cf6a5ac939607f1824f7a4765228353a12"
+           envFrom:
+            - secretRef:
+                name: jira-cloud-credentials
+
           readinessProbe:
             httpGet:
               path: /health
