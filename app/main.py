@@ -25,7 +25,6 @@ templates = Jinja2Templates(directory="app/templates")
 APP_INFO.labels(app=APP_NAME, version=APP_VERSION, environment=ENVIRONMENT).set(1)
 
 
-
 @app.middleware("http")
 async def metrics_middleware(request: Request, call_next):
     start = time.time()
@@ -100,7 +99,6 @@ def jira_issues():
         )
 
 
-
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     # since the app is serving, we consider it "healthy" for UI purposes
@@ -127,7 +125,6 @@ def index(request: Request):
             "jira_project": jira_project,
         },
     )
-
 
 
 @app.get("/metrics")
