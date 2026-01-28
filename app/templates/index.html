@@ -291,6 +291,7 @@
                 <tr>
                   <th style="width: 120px;">Key</th>
                   <th>Summary</th>
+		  <th style="width: 140px;">Work type</th>
                   <th style="width: 140px;">Status</th>
                   <th style="width: 180px;">Assignee</th>
                 </tr>
@@ -308,6 +309,7 @@
                       {% endif %}
                     </td>
                     <td>{{ issue.summary }}</td>
+		    <td><span class="pill">{{ issue.work_type }}</span></td>
                     <td><span class="pill">{{ issue.status }}</span></td>
                     <td>{{ issue.assignee }}</td>
                   </tr>
