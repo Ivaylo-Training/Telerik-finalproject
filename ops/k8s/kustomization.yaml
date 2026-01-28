@@ -9,7 +9,6 @@ resources:
 - service.yaml
 - ingress.yaml
 - servicemonitor.yaml
-- jira-secret.yaml
 
 images:
 - name: inikolov98/my-jira-automation
