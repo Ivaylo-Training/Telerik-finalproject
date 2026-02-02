@@ -14,7 +14,7 @@ On every commit to GitHub, a CI pipeline is triggered to:
 
 - update Kubernetes manifests stored in Git.
 
-Using **GitOps principles**, **Argo CD** continuously monitors the repository and automatically synchronizes and deploys the application to a **Kubernetes cluster** whenever changes are detected.
+The deployment is implemented by using **GitOps principles** - **Argo CD** continuously monitors the repository and automatically synchronizes and deploys the application to a **Kubernetes cluster** whenever changes are detected.
 
 The application exposes **health** and **metrics** endpoints, making it suitable for **production-ready deployment and observability**.
 
