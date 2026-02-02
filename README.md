@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project demonstrates a complete **CI/CD and GitOps pipeline** for a containerized **FastAPI** application that visualizes a **Jira dashboard**.
+This project demonstrates an automated **CI/CD and GitOps pipeline** for a containerized **FastAPI** application that visualizes a **Jira dashboard**.
 
 On every commit to GitHub, a CI pipeline is triggered to:
 
