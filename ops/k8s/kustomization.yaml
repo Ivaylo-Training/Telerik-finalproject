@@ -3,7 +3,6 @@ kind: Kustomization
 
 namespace: jira-auto
 
-# - ingress.yaml # temp removed
 resources:
 - namespace.yaml
 - deployment.yaml
