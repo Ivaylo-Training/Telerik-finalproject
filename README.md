@@ -1,12 +1,22 @@
 # Automated CI/CD Project with GitOps – Jira Automation Dashboard
 
-## Overview
+## Project Overview
 
-This repository demonstrates a **compact but complete CI/CD and GitOps workflow** for a containerized backend application deployed to Kubernetes.
+This project demonstrates a complete **CI/CD and GitOps pipeline** for a containerized **FastAPI** application that visualizes a **Jira dashboard**.
 
-The main goal is to illustrate how a change flows from **Git commit → CI validation → container build → GitOps-based deployment → runtime observability**, without any manual deployment steps.
+On every commit to GitHub, a CI pipeline is triggered to:
 
-The project intentionally keeps application logic lightweight so the focus stays on **delivery automation, traceability, and operational correctness**.
+- validate the application code,
+
+- build a Docker image,
+
+- push the image to Docker Hub,
+
+- update Kubernetes manifests stored in Git.
+
+Using **GitOps principles**, **Argo CD** continuously monitors the repository and automatically synchronizes and deploys the application to a **Kubernetes cluster** whenever changes are detected.
+
+The application exposes **health** and **metrics** endpoints, making it suitable for **production-ready deployment and observability**.
 
 ---
 
@@ -21,15 +31,14 @@ The project intentionally keeps application logic lightweight so the focus stays
 │       └── index.html        # Jira dashboard UI
 ├── tests/                    # Unit tests
 ├── requirements.txt
-├── Dockerfile
+├── Dockerfile                # Containerization
 ├── .github/workflows/
 │   └── ci-cd.yaml            # CI/CD pipeline definition
 ├── ops/
-│   ├── k8s/
+│   ├── k8s/                  # Kubernetes manifests
 │   │   ├── deployment.yaml
 │   │   ├── service.yaml
 │   │   ├── servicemonitor.yaml
-│   │   ├── ingress.yaml      # Optional (cluster-dependent)
 │   │   └── kustomization.yaml
 │   └── argocd/
 │       └── application.yaml  # Argo CD GitOps application
@@ -57,7 +66,7 @@ The project covers the full delivery lifecycle:
 
 Deeper focus is placed on **GitOps and immutable deployments**:
 
-* Git as the single source of truth
+* Git as the single source of truth -> No manual kubectl apply
 * Kubernetes manifests updated automatically from CI
 * Argo CD reconciliation
 * Docker images versioned by Git commit SHA
@@ -83,22 +92,6 @@ The service exposes:
 
 ---
 
-## CI/CD Pipeline
-
-The CI/CD pipeline is implemented with **GitHub Actions** and runs on the `main` branch.
-
-### CI responsibilities
-
-* Run linting and unit tests
-* Build a Docker image
-* Scan the image for vulnerabilities
-* Push the image to a container registry
-* Update Kubernetes manifests with the new image tag
-
-Images are tagged with the **Git commit SHA**, ensuring immutability and traceability.
-
----
-
 ## Continuous Deployment with GitOps
 
 Deployment is handled using **Argo CD**:
@@ -119,7 +112,6 @@ The application runs as a Kubernetes Deployment:
 * A Service load-balances traffic
 * Rolling updates provide zero-downtime deployments
 
-Local access is provided via **NodePort** (Ingress is optional, depending on the cluster).
 
 ---
 
@@ -141,8 +133,7 @@ Collected metrics include:
 To keep the project focused and easy to demonstrate, the following were intentionally left out:
 
 * Multiple environments - dev, staging, production
-* ChatOps for nottifications
-* Alerting based on monitoring tools (Grafana)
+* Alerting based on monitoring tools such as Grafana
 * Advanced secret management solutions
 
 
@@ -158,4 +149,3 @@ This project demonstrates:
 * Kubernetes-based application runtime
 * basic but effective observability
 
-The result is a **clean, reproducible, and fully automated delivery workflow** 
