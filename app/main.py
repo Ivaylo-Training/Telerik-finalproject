@@ -17,7 +17,7 @@ JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN", "")
 JIRA_PROJECT_KEY = os.getenv("JIRA_PROJECT_KEY", "")
 JIRA_MAX_RESULTS = int(os.getenv("JIRA_MAX_RESULTS", "8"))
 
-app = FastAPI(title="Jira Automation Dashboard", version="1.0.0")
+app = FastAPI(title="Jira Automation Dashboard 2", version="1.0.0")
 templates = Jinja2Templates(directory="app/templates")
 
 
