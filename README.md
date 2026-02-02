@@ -66,9 +66,9 @@ The project covers the full delivery lifecycle:
 
 Deeper focus is placed on **GitOps and immutable deployments**:
 
-* Git as the single source of truth -> No manual kubectl apply
+* Git used as the primary deployment reference
 * Kubernetes manifests updated automatically from CI
-* Argo CD reconciliation
+* Argo CD reconciliation loop for desired state enforcement
 * Docker images versioned by Git commit SHA
 
 ---
