@@ -14,7 +14,7 @@ env:
 
 jobs:
   quality:
-    name: Secrets, Lint, Test, SAST, SonarCloud
+    name: Secrets, Lint, Test, SAST, SonarClou
     runs-on: ubuntu-latest
 
     steps:
